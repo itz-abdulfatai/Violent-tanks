@@ -1,35 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home | Violet Tank</title>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game | Violent Tanks</title>
+    <link rel="stylesheet" href="styles/game.css">
+    <link rel="stylesheet" href="styles/style.css" />
+    <!-- preload assets for better performance -->
     <link rel="preload" as="image" href="assets/enemy-sprite-1.png">
     <link rel="preload" as="image" href="assets/enemy-sprite-2.png">
     <link rel="preload" as="image" href="assets/enemy-sprite-3.png">
     <link rel="preload" as="image" href="assets/enemy-sprite-4.png">
     <link rel="preload" as="image" href="assets/enemy-sprite-5.png">
-    <link rel="preload" as="image" href="assets/enemy-sprite-6.png">
-</head>
-
-<body>
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    
+  </head>
+  <body>
     <header>
-        <div class="left"><span class=" score-display">highest score: <span class="highest-score">0</span></span></div>
-        <div class="right"><div title="change theme" class="theme-change"><i class='bx bxs-cog bx-tada' ></i></div></div>
+        <div class="left">
+           <span class=" score-display">highest score: <span class="highest-score">0</span></span>
+          <span class=" score-display">score: <span class="score">0</span></span>
+        </div>
+        <div class="right">
+          <div title="change theme" class="theme-change">
+            <i class="bx bxs-cog bx-tada"></i>
+          </div>
+        </div>
     </header>
     <main>
-        <!-- <div class="home">
-            <h1 class="title">violent tanks</h1>
-            <a href="game.html" class="btn-primary">Start</a>
-        </div> -->
 
     </main>
+
+    <div class="images-invincible" style="display: none;">
+      <img src="assets/enemy-sprite-0.png" alt="">
+      <img src="assets/enemy-sprite-1.png" alt="">
+      <img src="assets/enemy-sprite-2.png" alt="">
+      <img src="assets/enemy-sprite-3.png" alt="">
+      <img src="assets/enemy-sprite-4.png" alt="">
+      <img src="assets/enemy-sprite-5.png" alt="">
+    </div>
+
+
+
+    <script src="js/globals.js"></script>
     <script src="js/theme-change.js"></script>
-    <script src="js/script.js"></script>
-
-</body>
-
+    <script src="js/bullet.js"></script>
+    <script src="js/enemy.js"></script>
+    <script type="module" src="js/game.js"></script>
+  </body>
 </html>

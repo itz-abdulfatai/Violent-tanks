@@ -6,7 +6,7 @@ div.game {
     border-radius: 5px;
     position: relative;
     padding: 0 10px;
-    background-image: url(assets/bg-img.jpg);
+    background-image: url(../assets/bg-img.jpg);
 }
 
 .player-area {
