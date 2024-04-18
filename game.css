@@ -2,13 +2,15 @@ div.game {
     width: 50vw;
     height: 80vh;
     border: solid var(--accent-color-2);
+    overflow: hidden;
     border-radius: 5px;
     position: relative;
+    padding: 0 10px;
+    background-image: url(assets/bg-img.jpg);
 }
 
 .player-area {
     width: 100%;
-    border: solid green;
     height: 50px;
     position: absolute;
     bottom: 0;
@@ -17,8 +19,8 @@ div.game {
 }
 
 .player {
-    /* transition: left .1s ease; */
     z-index: 99;
+    transition: all ease ;
 }
 
 .enemy-spawn-area {
@@ -31,6 +33,7 @@ div.game {
 
 .bullet {
     background-color: green;
+ 
 }
 
 body {
@@ -45,5 +48,9 @@ body {
     text-transform: capitalize;
     font-family: "Jersey 25", sans-serif;
     
+
+}
+
+main {
 
 }

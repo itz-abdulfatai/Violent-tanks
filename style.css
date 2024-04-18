@@ -71,7 +71,7 @@ main {
     
 }
 
-h1.title {
+h1.title, h2 {
     color: var(--text-color);
     font-weight: 400;
     text-transform: capitalize;
@@ -113,3 +113,19 @@ div.home {
 
 }
 
+div.game-over {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.final-score {
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+button.restart-btn {
+    
+    margin-top: 40px;
+
+}

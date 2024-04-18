@@ -1,9 +1,3 @@
-let enemies = [];
-const game = document.querySelector(".game");
-let enemySpeed = 1;
-let gameOver = false;
-
-// i moved the game variable from here
 
 class Enemy {
   constructor(x, y) {
@@ -16,6 +10,7 @@ class Enemy {
     this.id = `enemy-${Math.floor(Math.random() * 999)}-${Math.floor(
       Math.random() * 999
     )}`;
+    this.zIndex = 90;
   }
 
   draw() {
@@ -29,26 +24,24 @@ class Enemy {
     enemy.src = this.src;
     enemy.style.objectFit = "cover";
     game.appendChild(enemy);
+    enemy.style.zIndex = this.zIndex;
     enemy.dataset.enemyId = this.id;
   }
 }
 
-// const enemy = new Enemy((Math.floor(Math.random() * game.offsetWidth))-this.width, 1);
 
-// enemy.draw();
 
 function spawnEnemy() {
-  const enemy = new Enemy(Math.floor(Math.random() * game.offsetWidth), 1);
+  const enemy = new Enemy(Math.floor(Math.random() * (game.offsetWidth - 60)), 1);
   enemy.draw();
   enemies.push(enemy);
 }
 
 function moveEnemy() {
   enemies.forEach((enemy) => {
+    //  tenemy speed can be changed in globals.js
     enemy.y += enemySpeed;
-    //  the 50 here can be var enemy speed
     enemy.draw();
-    // console.log(enemy)
   });
 }
 
@@ -60,9 +53,6 @@ function checkEnemyPosition() {
       const gameHeight = game.getBoundingClientRect().height;
 
       if (enemy.y > gameHeight - 50) {
-        // console.log('enemy reached below')
-        // enemies.splice(i, 1);
-        // enemyElement.remove();
         queueFree(enemyElement, enemies, i);
         gameOver = true;
 
@@ -72,29 +62,9 @@ function checkEnemyPosition() {
 }
 
 function queueFree(element, parent, index) {
+    element.classList.add('gone')
+    element.remove();
+
   parent.splice(index, 1);
-  element.remove();
+
 }
-
-// this will be executed using physics process
-setInterval(() => {
-  checkEnemyPosition();
-}, 1000 / 60);
-
-// funtions to iterate using framerate
-// 1 move enemy
-
-setInterval(() => {
-  moveEnemy();
-}, 1000 / 10);
-
-// test for enemy spawn and motion
-
-setInterval(() => {
-  spawnEnemy();
-}, 3000);
-
-// increase enemy speed with time
-setInterval(() => {
-  enemySpeed += 0.5;
-}, 5000);

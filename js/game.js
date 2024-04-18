@@ -1,11 +1,7 @@
 const PlayerArea = document.querySelector(".player-area");
 let highestScore = JSON.parse(localStorage.getItem("highestScore")) || 0;
 
-// const playerAreaPos = PlayerArea.getBoundingClientRect().y;
-// console.log(playerAreaPos);
 
-// const x = (PlayerArea.offsetWidth / 2) / 2;
-// console.log(x)
 
 let player;
 let playerElement;
@@ -23,11 +19,8 @@ class Player {
   draw() {
     player = new Player(this.x, this.y);
     playerElement.classList.add("player");
-    // playerElement.offsetTop = this.y;
-    // playerElement.offsetWidth = this.x;
     playerElement.style.height = `${this.height}px`;
     playerElement.style.width = `${this.width}px`;
-    // playerElement.style.backgroundColor = "#f03562";
     playerElement.style.position = "absolute";
     playerElement.style.top = `${this.y}px`;
     playerElement.style.left = `${this.x}px`;
@@ -56,20 +49,15 @@ class Player {
   }
 }
 
-// create play on load
 
-// these will be called when screen load
 player = new Player(100, -35);
 player.draw();
 player.move();
-// console.log(bullets);
 
-// this will be executed using physics process
 setInterval(() => {
   checkBulletPosition();
 }, 1000 / 60);
 
-// console.log(game.getBoundingClientRect());
 
 function updateHighestScore() {
   // console.log((highestScore))

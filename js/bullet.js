@@ -1,7 +1,3 @@
-let bullets = [];
-let score = 0;
-
-
 class Bullet {
   constructor(x, y) {
     this.x = x;
@@ -12,6 +8,7 @@ class Bullet {
     this.id = `bullet-${Math.floor(Math.random() * 999)}-${Math.floor(
       Math.random() * 999
     )}`;
+    this.zIndex = Math.floor(Math.random() * 80);
   }
 
   draw() {
@@ -24,6 +21,7 @@ class Bullet {
     bullet.style.bottom = `${this.y}px`;
     bullet.style.left = `${this.x}px`;
     game.appendChild(bullet);
+    bullet.style.zIndex = this.zIndex;
     bullet.dataset.bulletId = this.id;
   }
 }
@@ -32,7 +30,6 @@ function shootBullet() {
   const player = document.querySelector(".player");
   const xPos = player.style.left;
   const xPosNumber = xPos.split("px")[0];
-  // console.log(xPosNumber);
   const bullet = new Bullet(Number(xPosNumber) + 35, 20);
   bullet.draw();
   bullets.push(bullet);
@@ -41,7 +38,7 @@ function shootBullet() {
 function moveBullet() {
   bullets.forEach((bullet) => {
     bullet.y += 10;
-    // the 5 here can be variable bullet speed
+    // the 10 here can be variable bullet speed if you would like to change it
     bullet.draw();
   });
 }
@@ -50,12 +47,10 @@ setInterval(() => {
   moveBullet();
 }, 1000 / 60);
 
-//   setInterval(() => {
-//     shootBullet();
-//   }, 8000);
+
 
 document.body.addEventListener("keydown", () => {
-  if (event.key == " ") {
+  if (event.key == " " && !gameOver) {
     shootBullet();
   }
 });
@@ -64,18 +59,10 @@ function checkBulletPosition() {
   if (bullets) {
     for (let i = 0; i < bullets.length; i++) {
       const bullet = bullets[i];
-      // const bulletId = bullet.id;
       const bulletElement = bullet.element;
-      // console.log(bulletElement);
-      // const playerAreaHeight = game;
-      // console.log(playerAreaHeight);
       const gameHeight = game.getBoundingClientRect().height;
-      // console.log(gameHeight)
-
-      if (bullet.y > gameHeight - 30) {
+      if (bullet.y > gameHeight - 50) {
         console.log("game height reached");
-        // bullets.splice(i, 1);
-        // bulletElement.remove();
         queueFree(bulletElement, bullets, i);
       }
     }
@@ -100,7 +87,6 @@ function checkForCollision() {
         const enemyPositionX = enemyPosition.x;
         const enemyPositionY = enemyPosition.y;
 
-        // console.log(`bullet position is (${bulletPositionX},${bulletPositionY}) and enemy position is (${enemyPositionX},${enemyPositionY})`)
 
         if (
           bulletPosition.x < enemyPosition.x + enemyPosition.width &&
@@ -114,14 +100,12 @@ function checkForCollision() {
           score += 5;
           updateScore();
 
-          // (bulletPositionX - enemyPositionX) < 20 && bulletPositionY - enemyPositionY < 20
         }
       }
     }
   }
 }
 
-// to call using physics process delta
 
 setInterval(() => {
   checkForCollision();
@@ -132,16 +116,22 @@ function updateScore() {
   scoreDisplay.innerHTML = score;
 }
 
-function checkGameOver () {
-  if (gameOver) {
-    console.log('game over')
+// for residual bullets
 
-  }
+function clearBullets() {
+  const bulletsOnScreen = document.querySelectorAll(".bullet");
+
+  bulletsOnScreen.forEach((bullet) => {
+    const bulletsOnScreenId = bullet.dataset.bulletId;
+    let bulletsInArray = [];
+
+    bullets.forEach((bullet) => {
+      bulletsInArray.push(bullet.id);
+    });
+
+    if (!bulletsInArray.includes(bulletsOnScreenId)) {
+      bullet.remove();
+    }
+  });
+
 }
-
-// process delta
-
-
-// setInterval(() => {
-//   checkGameOver();
-// }, 1000 / 10)
