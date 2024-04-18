@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Game | Violent Tanks</title>
+    <link rel="stylesheet" href="game.css">
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    
+  </head>
+  <body>
+    <header>
+        <div class="left">
+           <span class=" score-display">highest score: <span class="highest-score">0</span></span>
+          <span class=" score-display">score: <span class="score">0</span></span>
+        </div>
+        <div class="right">
+          <div title="change theme" class="theme-change">
+            <i class="bx bxs-cog bx-tada"></i>
+          </div>
+        </div>
+    </header>
+    <main>
+        <div class="game">
+            <div class="player-area"></div>
+        </div>
+    </main>
+    <script src="js/globals.js"></script>
+    <script src="js/theme-change.js"></script>
+    <script src="js/bullet.js"></script>
+    <script src="js/enemy.js"></script>
+    <script type="module" src="js/game.js"></script>
+  </body>
+</html>

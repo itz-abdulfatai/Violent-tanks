@@ -1,0 +1,49 @@
+div.game {
+    width: 50vw;
+    height: 80vh;
+    border: solid var(--accent-color-2);
+    border-radius: 5px;
+    position: relative;
+}
+
+.player-area {
+    width: 100%;
+    border: solid green;
+    height: 50px;
+    position: absolute;
+    bottom: 0;
+    
+
+}
+
+.player {
+    /* transition: left .1s ease; */
+    z-index: 99;
+}
+
+.enemy-spawn-area {
+    width: 100%;
+    border: solid blue;
+    height: 50px;
+    position: absolute;
+    top: 0;
+}
+
+.bullet {
+    background-color: green;
+}
+
+body {
+    overflow: hidden;
+}
+
+.score-display {
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-family: "Jersey 25", sans-serif;
+    
+
+}

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Invaders</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <style>#player {
+
+        background-color: red;
+
+
+
+
+    }</style>
+</head>
+<body>
+    <div id="game-container">
+        <div id="player"></div>
+        <div id="enemy"></div>
+    </div>
+    <!-- <script src="game.js"></script> -->
+    <script>
+class Player {
+  constructor(elementId) {
+    this.element = document.getElementById(elementId);
+    this.x = window.innerWidth / 2 - this.element.clientWidth / 2;
+    this.speed = 10;
+  }
+
+  moveLeft() {
+    this.x -= this.speed;
+    if (this.x < 0) {
+      this.x = 0;
+    }
+    this.element.style.left = this.x + "px";
+  }
+
+  moveRight() {
+    this.x += this.speed;
+    if (this.x + this.element.clientWidth > window.innerWidth) {
+      this.x = window.innerWidth - this.element.clientWidth;
+    }
+    this.element.style.left = this.x + "px";
+  }
+}
+
+class Enemy {
+  constructor(elementId) {
+    this.element = document.getElementById(elementId);
+    this.x = Math.random() * (window.innerWidth - this.element.clientWidth);
+    this.y = 0;
+    this.speed = 5;
+    this.direction = 1; // 1 - right, -1 - left
+  }
+
+  moveZigZag() {
+    this.x += this.speed * this.direction;
+    if (this.x + this.element.clientWidth > window.innerWidth || this.x < 0) {
+      this.direction *= -1;
+      this.y += 20; // Adjust for zigzag movement
+    }
+    this.element.style.left = this.x + "px";
+    this.element.style.top = this.y + "px";
+  }
+}
+
+class Bullet {
+  constructor(elementId, playerX, playerY) {
+    this.element = document.getElementById(elementId);
+    this.element.style.display = "block"; // Show bullet on creation
+    this.x = playerX + (this.element.clientWidth / 2);
+    this.y = playerY;
+    this.speed = 10;
+  }
+
+  moveUp() {
+    this.y -= this.speed;
+    if (this.y < 0) {
+      this.element.style.display = "none"; // Hide bullet if it reaches top
+    }
+  }
+}
+
+let isGameOver = false;
+let score = 0;
+let enemySpeedIncrease = 0.1; // Amount to increase enemy speed per update
+
+function checkCollisions() {
+  // Player-enemy collision
+  const enemyRect = enemy.element.getBoundingClientRect();
+  const playerRect = player.element.getBoundingClientRect();
+  if (isRectanglesColliding(playerRect, enemyRect)) {
+    isGameOver = true;
+    gameOver(); // Handle game over logic
+  }
+
+  // Bullet-enemy collision
+  const bullet = document.querySelector(".bullet"); // Assuming single bullet
+  if (bullet && !isGameOver) { // Check only if bullet exists and game not over
+    const bulletRect = bullet.getBoundingClientRect();
+    if (isRectanglesColliding(bulletRect, enemyRect)) {
+      score++; // Increase score on hit
+      enemy.y = -enemy.element.clientHeight; // Reset enemy position off-screen
+      bullet.style.display = "none"; // Hide bullet after collision
+    }
+  }
+}
+
+function isRectanglesColliding(rect1, rect2) {
+  return (
+    rect1.x < rect2.x + rect2.width &&
+    rect1.x + rect1.width > rect2.x &&
+    rect1.y < rect2.y + rect2.height &&
+    rect1.y + rect1.height > rect2.y
+  );
+}
+
+function gameOver() {
+  // Logic to switch to end screen (hide game screen, display end screen)
+  document.getElementById("game-container").style.display = "none";
+  document.getElementById("end-screen").style.display = "block";
+  document.getElementById("final-score").textContent = score;
+}
+
+// Increase enemy speed gradually over time
+let enemySpeedTimer = setInterval(() => {
+  enemy.speed += enemySpeedIncrease;
+}, 1000); // Update enemy speed every second
+
+
+
+
+    </script>
+</body>
+</html>

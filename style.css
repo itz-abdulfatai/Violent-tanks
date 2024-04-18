@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+10+Charted&family=Jersey+25&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    --bg-primary:#040302;
+    --text-color:#ffff;
+    --accent-color:#f79603;
+    --accent-color-2:#d52826;
+}
+
+body.light {
+    --bg-primary:#aae8c6;
+    --text-color:#040302;
+    --accent-color:#d52826;
+    --accent-color-2:#f79603;
+
+
+}
+
+body {
+    background-color: var(--bg-primary);
+}
+
+header {
+    display: flex;
+    height: 70px;
+    background-color: var(--bg-primary);
+    color: var(--text-color);
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+
+
+.left {
+    display: flex;
+    justify-content: flex-start;
+    gap: 50px;
+}
+
+.score-display {
+    font-size: 2rem;
+    font-weight: 600;
+    text-transform: capitalize;
+    font-weight: 400;
+    text-transform: capitalize;
+    font-family: "Jersey 25", sans-serif;
+    
+
+}
+
+.theme-change {
+    color: var(--text-color);
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+main {
+    padding: 0 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+
+    
+}
+
+h1.title {
+    color: var(--text-color);
+    font-weight: 400;
+    text-transform: capitalize;
+    font-family: "Jersey 25", sans-serif;
+    font-size: 7rem;
+    font-style: normal;
+}
+
+.btn-primary {
+    text-decoration: none;
+    background-color: var(--accent-color);
+    color: var(--bg-primary);
+    font-weight: 400;
+    text-transform: capitalize;
+    font-family: "Jersey 25", sans-serif;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px 0 10px 0;
+    font-size: 2rem;
+    /* transition: all 1s ease; */
+
+}
+
+.btn-primary:hover {
+    transform: scale(1.04);
+}
+
+
+div.home {
+    width: 60vw;
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+    border: solid red;
+    border-radius: 5px;
+
+}
+
