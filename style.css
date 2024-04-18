@@ -129,3 +129,11 @@ button.restart-btn {
     margin-top: 40px;
 
 }
+
+.restart-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}

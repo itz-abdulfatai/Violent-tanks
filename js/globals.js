@@ -23,7 +23,7 @@ function checkGameOver() {
     <div class="game-over">
         <h2>Game Over</h2>
         <div class="final-score">your score was <span class="final-score">${score}</span></div>
-        <div class="restart-div"><button class="restart-btn btn-primary">Restart</button>
+        <div class="restart-div"><button class="restart-btn btn-primary">Restart</button><button class="home-btn btn-primary">Home</button>
   </div>
     </div>
     
@@ -32,7 +32,11 @@ function checkGameOver() {
     `;
     document.querySelector('.restart-btn').addEventListener('click', () => {
         location.reload()
-    })
+    });
+
+    document.querySelector('.home-btn').addEventListener('click', () => {
+      location.href = 'index.html'
+  });
 
 
   }
